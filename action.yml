@@ -13,6 +13,10 @@ inputs:
     description: 'Fastlane Match encryption passphrase'
     required: true
 
+  keychain_password:
+    description: 'Password to unlock the keychain for signing'
+    required: true
+
 runs:
   using: composite
   steps:
@@ -34,6 +38,7 @@ runs:
       env:
         MATCH_GIT_BASIC_AUTHORIZATION: ${{ inputs.match_git_basic_authorization }}
         MATCH_PASSWORD: ${{ inputs.match_password }}
+        KEYCHAIN_PASSWORD: ${{ inputs.keychain_password }}
       run: bundle exec fastlane ios build_ios
 
     - name: Upload iOS Artifact
